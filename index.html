@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@2"></script>
+    <title>VueJS</title>
+</head>
+<body>
+    <style>
+    body{
+        background-color: grey;
+        font-size: 40px;
+        text-align: center;
+    }
+    #mybutton{
+        background-color: black;
+        color:  rgb(255, 0, 0);
+    }
+    </style>
+    <div id="app">
+        <input type="text" placeholder="Write a message" style="width: 220px; font-size: 30px;" v-model="msg">
+        <p style="text-align: left;">Message: {{msg}}</p>
+        <div id="button" style="float: left;">
+            <button @click="saveme" id="mybutton" style="height: 35px; width: 90px;">Save</button>
+        </div>
+        <div class="alltexts" v-show="typeof saved != 'undefined'" style="float: center; white-space: pre-wrap;">
+            <br><br><p v-for="message in saved">{{message.name}}</p>
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                saved: [],
+                msg: undefined 
+            },
+            methods:{
+                saveme(){
+                     return this.saved.push({name: this.msg})
+                }
+            }
+        })
+    </script>
+</body>
+</html>
